@@ -1,0 +1,112 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Universidad {
+  universidad Int @id
+  nombre String
+
+  @@map("universidades")
+}
+
+model Facultad {
+  facultad Int @id
+  nombre String
+  alumnos Alumno[] 
+
+  @@map("facultades")
+}
+
+model Especialidad {
+  especialidad Int @id
+  nombre String
+
+  materias Materia[]
+  orientaciones Orientacion[]
+  planes Plan[]
+
+  @@map("especialidades")
+}
+
+model Grado {
+  grado Int @id
+  nombre String
+
+  @@map("grados")
+}
+
+model Localidad {
+  codigo Int @id
+  ciudad String
+  provincia String
+  pais_del_c String
+
+  @@map("localidades")
+}
+
+model Materia {
+  materia Int @id
+  especialidad Int
+  plan Int
+  nombre String
+  ano Int
+
+  especialidades Especialidad @relation(fields: [especialidad], references: [especialidad])
+  planes Plan @relation(fields: [plan], references: [plan])
+
+  @@map("materias")
+}
+
+model Orientacion {
+  nombre String
+  plan Int
+  especialidad Int
+
+  planes Plan @relation(fields: [plan], references: [plan])
+  especialidades Especialidad @relation(fields: [especialidad], references: [especialidad])
+
+  @@id([plan, especialidad])
+  @@map("orientaciones")
+}
+
+model Pais {
+  pais Int @id
+  nombre String
+
+  @@map("paises")
+}
+
+model Plan {
+  plan Int @id 
+  especialidad Int
+  nombre String
+
+  orientaciones Orientacion[]
+  materias Materia[]
+  especialidades Especialidad @relation(fields: [especialidad], references: [especialidad])
+
+  @@map("planes")
+}
+
+model Alumno {
+  alumno Int @id
+  nombre String
+  apellido String
+  facultad_id Int
+
+  facultad Facultad @relation(fields: [facultad_id], references: [facultad])
+
+  @@map("alumnos")
+}
