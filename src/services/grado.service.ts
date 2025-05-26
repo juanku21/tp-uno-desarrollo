@@ -22,7 +22,7 @@ export class GradoService {
             return result
         } 
         catch (error : any) {
-            throw new Error(`No fue posible obtener el grados ${error}`)
+            throw new Error(`No fue posible obtener el grado ${error}`)
         }
     }
 
@@ -38,9 +38,9 @@ export class GradoService {
 
     public static async update(id : number, grado : Prisma.GradoUpdateInput) : Promise<Grado> {
         try {
-            const gradoExists = await repository.getById(id)
+            const exists = await repository.getById(id)
 
-            if (gradoExists === null) {
+            if (exists === null) {
                 throw new Error("El grado que desea actualizar no existe")
             }
 
@@ -55,9 +55,9 @@ export class GradoService {
 
     public static async delete(id : number) : Promise<Grado> {
         try {
-            const gradoExists = await repository.getById(id)
+            const exists = await repository.getById(id)
 
-            if (gradoExists === null) {
+            if (exists === null) {
                 throw new Error("El grado que desea eliminar no existe")
             }
 
