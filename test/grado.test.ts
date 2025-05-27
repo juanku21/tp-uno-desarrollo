@@ -49,7 +49,7 @@ const inputCreate: Prisma.GradoCreateInput = {
     nombre: "Director Escuela"
 }
 
-const inputUpdate : Prisma.AlumnoUpdateInput = {
+const inputUpdate : Prisma.GradoUpdateInput = {
     nombre: "El que limpia"
 }
 
