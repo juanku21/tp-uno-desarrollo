@@ -71,7 +71,7 @@ const inputUpdate : Prisma.AlumnoUpdateInput = {
 
 describe("Alumno service test", () => {
 
-    test("Debería retornar un alumno con todas sus relaciones", async () => {
+    test("Debería retornar una lista de alumnnos", async () => {
 
         await alumnoTest.get(mockAlumnoArray)
 

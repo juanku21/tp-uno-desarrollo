@@ -15,7 +15,7 @@ datasource db {
 
 
 model Universidad {
-  universidad Int @id
+  universidad Int @id @map("universida")
   nombre String
 
   @@map("universidades")
