@@ -1,8 +1,5 @@
 
 
-import { Prisma, PrismaClient } from "@prisma/client";
-import prisma from "config/client";
-
 
 export abstract class BaseRepository <TModel, TEntity, TCreate, TUpdate> {
 
@@ -35,7 +32,7 @@ export abstract class BaseRepository <TModel, TEntity, TCreate, TUpdate> {
         }
     }
 
-    public async update(id: number, data : TUpdate) : Promise<TEntity> {
+    public async update(id: any, data : TUpdate) : Promise<TEntity> {
         try {
             const result = await (this.model as any).update({
                 where: {
@@ -51,7 +48,7 @@ export abstract class BaseRepository <TModel, TEntity, TCreate, TUpdate> {
         }
     }
 
-    public async delete(id : number) : Promise<TEntity> {
+    public async delete(id : any) : Promise<TEntity> {
         try {
             const result = await (this.model as any).delete({
                 where: {

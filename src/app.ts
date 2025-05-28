@@ -2,15 +2,15 @@
 import { XMLtoJSONConverter } from "helpers/xml-json-converter"
 
 const routes : string[] = [
+    "./xml/universidad.xml",
     "./xml/facultades.xml",
-    "./xml/especialidades.xml",
     "./xml/grados.xml",
     "./xml/localidades.xml",
+    "./xml/paises.xml",
+    "./xml/especialidades.xml",
+    "./xml/planes.xml",
     "./xml/materias.xml",
     "./xml/orientaciones.xml",
-    "./xml/paises.xml",
-    "./xml/planes.xml",
-    "./xml/universidad.xml"
 ]
 
 

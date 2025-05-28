@@ -35,7 +35,7 @@ model Especialidad {
 
   materias Materia[]
   orientaciones Orientacion[]
-  planes Plan[]
+  planes PlanEspecialidad[]
 
   @@map("especialidades")
 }
@@ -70,14 +70,15 @@ model Materia {
 }
 
 model Orientacion {
-  nombre String
   plan Int
   especialidad Int
+  orientacion Int
+  nombre String
 
   planes Plan @relation(fields: [plan], references: [plan])
   especialidades Especialidad @relation(fields: [especialidad], references: [especialidad])
 
-  @@id([plan, especialidad])
+  @@id([plan, especialidad, orientacion])
   @@map("orientaciones")
 }
 
@@ -88,14 +89,26 @@ model Pais {
   @@map("paises")
 }
 
-model Plan {
-  plan Int @id 
+model PlanEspecialidad {
+  plan Int
   especialidad Int
+
+  planes Plan @relation(fields: [plan], references: [plan])
+  especialidades Especialidad @relation(fields: [especialidad], references: [especialidad])
+
+  @@id([plan, especialidad])
+
+  @@map("planes-especialidades")
+}
+
+
+model Plan {
+  plan Int @id
   nombre String
 
-  orientaciones Orientacion[]
+  especialidades PlanEspecialidad[]
   materias Materia[]
-  especialidades Especialidad @relation(fields: [especialidad], references: [especialidad])
+  orientaciones Orientacion[]
 
   @@map("planes")
 }
