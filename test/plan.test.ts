@@ -4,18 +4,17 @@ import { BaseServiceTest } from "./utils/base-test"
 import { PlanService } from "../src/services/plan.service"
 import { prismaMock } from "../src/config/singleton"
 import { Prisma, PrismaClient } from "@prisma/client"
-import { Plan } from "@prisma/client"
-import { PlanConRelaciones } from "../src/types"
+import { PlanEspecialidad } from "@prisma/client"
 
 
 class PlanServiceTest extends BaseServiceTest 
-<typeof prismaMock.plan, Plan, PlanService, Prisma.PlanCreateInput, Prisma.PlanUpdateInput> {
+<typeof prismaMock.planEspecialidad, PlanEspecialidad, PlanService, Prisma.PlanEspecialidadCreateInput, Prisma.PlanEspecialidadUpdateInput> {
 
     constructor(){
-        super(prismaMock.plan, PlanService)
+        super(prismaMock.planEspecialidad, PlanService)
     }
 
-    public async findById(mockPlan : Plan){
+    public async findById(mockPlan : PlanEspecialidad){
 
         this.mock.findUnique.mockResolvedValue(mockPlan)
 
@@ -33,82 +32,53 @@ const planTest = new PlanServiceTest()
 
 // mocks and input data
 
-const mockPlanArray : Plan[] = [
+const mockPlanArray : PlanEspecialidad[] = [
     {
-        plan: 2009,
-        nombre: "Plan 2009"
+        especialidad: 1,
+        plan: 2009
     }
 ]
 
-const mockPlanConRelaciones : PlanConRelaciones = {
+
+const mockPlan : PlanEspecialidad = {
+    especialidad: 1,
     plan: 2009,
-    nombre: "Plan 2009",
-    
-    materias: [
-        {
-            especialidad: 1,
-            materia: 1,
-            plan: 2009,
-            nombre: "Física II",
-            ano: 2
-        }
-    ],
-
-    especialidades: [
-        {
-            especialidad: 1,
-            plan: 2009
-        }
-    ],
-
-    orientaciones: [
-        {
-            orientacion: 1,
-            especialidad: 1,
-            plan: 1,
-            nombre: "Ingeniería"
-        }
-    ]
-
-}
-
-const mockPlan : Plan = {
-    plan: 2009,
-    nombre: "Plan 2009"
 }
 
 
-const inputCreate: Prisma.PlanCreateInput = {
-    plan: 2009,
-    nombre: "Plan 2009",
+const inputCreate: Prisma.PlanEspecialidadCreateInput = {
+
+    planes: {
+        connectOrCreate: {
+            where: {
+                plan: 2009
+            },
+            create: {
+                plan: 2009,
+                nombre: "Plan 2009"
+            }
+        }
+    },
 
     especialidades: {
-        create: [
-            {
-                especialidades: {
-                    connect: {
-                        especialidad: 1
-                    }
-                }
-            }
-        ]
+        connect: {
+            especialidad: 1
+        }
     }
 }
 
-const inputUpdate : Prisma.PlanUpdateInput = {
-    plan: 2018,
-    nombre: "Plan 2018",
+const inputUpdate : Prisma.PlanEspecialidadUpdateInput = {
 
-    especialidades: {
-        create: [
-            {
-                especialidades: {
-                    connect: {
-                        especialidad: 2
-                    }
-                }
+    planes: {
+        connectOrCreate: {
+            where: {
+                plan: 2009
+            },
+            create: {
+                plan: 2009,
+                nombre: "Plan 2009"
             }
-        ]
+        }
     }
 }
 
@@ -126,9 +96,9 @@ describe("Plan service test", () => {
 
     })
 
-    test("Debería retornar un plan con sus relaciones", async () => {
+    test("Debería retornar un plan", async () => {
 
-        await planTest.findById(mockPlanConRelaciones)
+        await planTest.findById(mockPlan)
 
     })
 

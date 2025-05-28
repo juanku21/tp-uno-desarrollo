@@ -1,6 +1,8 @@
 
 import { AlumnoRepository } from "../repositories/alumno.repository"
 import { Alumno, Prisma } from "@prisma/client"
+import { MapperInputAlumnoToPrsima } from "../helpers/mappers" 
+import { InputAlumno } from "types"
 
 const repository = new AlumnoRepository()
 
@@ -26,9 +28,9 @@ export class AlumnoService {
         }
     }
 
-    public static async create(alumno : Prisma.AlumnoCreateInput) : Promise<Alumno> {
+    public static async create(alumno : InputAlumno) : Promise<Alumno> {
         try {
-            const result = await repository.create(alumno)
+            const result = await repository.create(MapperInputAlumnoToPrsima.toPrismaCreate(alumno))
             return result
         } 
         catch (error : any) {

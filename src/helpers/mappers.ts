@@ -1,24 +1,28 @@
 
 
-import { InputPlan, InputOrientacion, InputMateria } from "types"
+import { InputPlan, InputOrientacion, InputMateria, InputAlumno, InputUniversidad } from "types"
 import { Prisma } from "@prisma/client"
 
 export class MapperInputPlanToPrsima {
 
-    public static toPrismaCreate(inputPlan : InputPlan) : Prisma.PlanCreateInput {
+    public static toPrismaCreate(inputPlan : InputPlan) : Prisma.PlanEspecialidadCreateInput {
         return {
-            plan: inputPlan.plan,
-            nombre: inputPlan.nombre,
-            especialidades: {
-                create: [
-                    {
-                        especialidades: {
-                            connect: {
-                                especialidad: inputPlan.especialidad
-                            }
-                        }
+            planes: {
+                connectOrCreate: {
+                    where: {
+                        plan: inputPlan.plan
+                    },
+                    create: {
+                        plan: inputPlan.plan,
+                        nombre: inputPlan.nombre
                     }
-                ]
+                }
+            },
+
+            especialidades: {
+                connect: {
+                    especialidad: inputPlan.especialidad
+                }
             }
         }
     }
@@ -65,6 +69,36 @@ export class MapperInputOrientacionToPrsima {
                     plan: inputOrientacion.plan
                 }
             }
+        }
+    }
+
+}
+
+
+export class MapperInputAlumnoToPrsima {
+
+    public static toPrismaCreate(inputAlumno : InputAlumno) : Prisma.AlumnoCreateInput {
+        return {
+            alumno: inputAlumno.alumno,
+            nombre: inputAlumno.nombre,
+            apellido: inputAlumno.apellido,
+            facultad: {
+                connect: {
+                    facultad: inputAlumno.facultad_id
+                }
+            }
+        }
+    }
+
+}
+
+
+export class MapperInputUniversidadToPrsima {
+
+    public static toPrismaCreate(inputUniversidad : InputUniversidad) : Prisma.UniversidadCreateInput {
+        return {
+            universidad: inputUniversidad.universida,
+            nombre: inputUniversidad.nombre
         }
     }
 

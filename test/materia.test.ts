@@ -35,7 +35,7 @@ const mockMateriaArray : Materia[] = [
     {
         materia: 1,
         nombre: "Algebra Lineal I",
-        ano: 1,
+        ano: "1",
         especialidad: 1,
         plan: 2009
     }
@@ -44,7 +44,7 @@ const mockMateriaArray : Materia[] = [
 const mockMateria : Materia = {
     materia: 1,
     nombre: "Algebra Lineal I",
-    ano: 1,
+    ano: "1",
     especialidad: 1,
     plan: 2009
 }
@@ -53,7 +53,7 @@ const mockMateria : Materia = {
 const inputCreate: Prisma.MateriaCreateInput = {
     materia: 1,  
     nombre: "Análisis 1",
-    ano: 3,
+    ano: "3",
 
     planes: {
         connect: {
@@ -70,7 +70,7 @@ const inputCreate: Prisma.MateriaCreateInput = {
 
 const inputUpdate : Prisma.MateriaUpdateInput = {
     nombre: "Análisis de Sistemas",
-    ano: 2
+    ano: "2"
 }
 
 

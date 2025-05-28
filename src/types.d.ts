@@ -47,3 +47,17 @@ export interface InputMateria {
     especialidad : number,
     plan : number,
 }
+
+
+export interface InputAlumno {
+    alumno : number,
+    nombre : string,
+    apellido : string,
+    facultad_id : number
+}
+
+
+export interface InputUniversidad {
+    universida : number,
+    nombre : string
+}

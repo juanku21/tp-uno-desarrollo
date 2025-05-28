@@ -1,6 +1,6 @@
 
-import { Prisma, Plan } from "@prisma/client"
-import { PlanConRelaciones, InputPlan } from "types"
+import { Prisma, PlanEspecialidad } from "@prisma/client"
+import { InputPlan } from "types"
 import { PlanRepository } from "../repositories/plan.repository"
 import { MapperInputPlanToPrsima } from "../helpers/mappers"
 
@@ -8,7 +8,7 @@ const repository = new PlanRepository()
 
 export class PlanService {
 
-    public static async get() : Promise<Plan[]> {
+    public static async get() : Promise<PlanEspecialidad[]> {
         try {
             const result = await repository.get()
             return result
@@ -19,7 +19,7 @@ export class PlanService {
 
     }
 
-    public static async findById(id : number) : Promise<PlanConRelaciones | null> {
+    public static async findById(id : Prisma.PlanEspecialidadWhereUniqueInput) : Promise<PlanEspecialidad | null> {
         try {
             const result = await repository.getById(id)
             return result
@@ -29,7 +29,7 @@ export class PlanService {
         }
     }
 
-    public static async create(plan : InputPlan) : Promise<Plan> {
+    public static async create(plan : InputPlan) : Promise<PlanEspecialidad> {
         try {
             const result = await repository.create(MapperInputPlanToPrsima.toPrismaCreate(plan))
             return result
@@ -39,7 +39,7 @@ export class PlanService {
         }
     }
 
-    public static async update(id : number, plan : Prisma.PlanUpdateInput) : Promise<Plan> {
+    public static async update(id : Prisma.PlanEspecialidadWhereUniqueInput, plan : Prisma.PlanEspecialidadUpdateInput) : Promise<PlanEspecialidad> {
         try {
             const exists = await repository.getById(id)
 
@@ -56,7 +56,7 @@ export class PlanService {
         }
     }
 
-    public static async delete(id : number) : Promise<Plan> {
+    public static async delete(id : Prisma.PlanEspecialidadWhereUniqueInput) : Promise<PlanEspecialidad> {
         try {
             const exists = await repository.getById(id)
 

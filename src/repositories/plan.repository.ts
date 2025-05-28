@@ -1,26 +1,21 @@
 
-import { Prisma, Plan } from "@prisma/client"
+import { Prisma, PlanEspecialidad } from "@prisma/client"
 import { PlanConRelaciones } from "../types"
 import { BaseRepository } from "./base.repository"
 import prisma from "../config/client"
 
 export class PlanRepository extends BaseRepository 
-<typeof prisma.plan, Plan, Prisma.PlanCreateInput, Prisma.PlanUpdateInput> {
+<typeof prisma.planEspecialidad, PlanEspecialidad, Prisma.PlanEspecialidadCreateInput, Prisma.PlanEspecialidadUpdateInput> {
 
     constructor(){
-        super(prisma.plan)
+        super(prisma.planEspecialidad)
     }
 
-    public async getById(id : number) : Promise<PlanConRelaciones | null> {
+    public async getById(id : Prisma.PlanEspecialidadWhereUniqueInput) : Promise<PlanEspecialidad | null> {
         try {
-            const result = await prisma.plan.findUnique({
+            const result = await prisma.planEspecialidad.findUnique({
                 where: {
-                    plan: id 
-                },
-                include:{
-                    materias: true,
-                    especialidades: true,
-                    orientaciones: true
+                    plan_especialidad: id.plan_especialidad
                 }
             })
 

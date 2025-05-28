@@ -57,14 +57,16 @@ model Localidad {
 }
 
 model Materia {
-  materia Int @id
+  materia Int
   especialidad Int
   plan Int
   nombre String
-  ano Int
+  ano String
 
   especialidades Especialidad @relation(fields: [especialidad], references: [especialidad])
   planes Plan @relation(fields: [plan], references: [plan])
+
+  @@id([materia, especialidad, plan])
 
   @@map("materias")
 }
