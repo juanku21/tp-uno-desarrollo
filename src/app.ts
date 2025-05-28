@@ -26,57 +26,35 @@ const entities : string[] = [
 
 
 
-let universityImporter = new UniversidadImporter(entities[0])
-universityImporter.sendToDB()
+const cargarDatos = async () => {
+    let universityImporter = new UniversidadImporter(entities[0])
+    await universityImporter.sendToDB()
 
-let facultyImporter = new FacultadImporter(entities[1])
-facultyImporter.sendToDB()
+    let facultyImporter = new FacultadImporter(entities[1])
+    await facultyImporter.sendToDB()
 
-let gradeImporter = new GradoImporter(entities[2])
-gradeImporter.sendToDB()
+    let gradeImporter = new GradoImporter(entities[2])
+    await gradeImporter.sendToDB()
 
-let locationsImporter = new LocalidadImporter(entities[3])
-locationsImporter.sendToDB()
+    let locationsImporter = new LocalidadImporter(entities[3])
+    await locationsImporter.sendToDB()
 
-let countriesImporter = new PaisImporter(entities[4])
-countriesImporter.sendToDB()
+    let countriesImporter = new PaisImporter(entities[4])
+    await countriesImporter.sendToDB()
 
-let especialityImporter = new EspecialidadImporter(entities[5])
-especialityImporter.sendToDB()
+    let especialityImporter = new EspecialidadImporter(entities[5])
+    await especialityImporter.sendToDB()
 
-let planImporter = new PlanImporter(entities[6])
-planImporter.sendToDB()
+    let planImporter = new PlanImporter(entities[6])
+    await planImporter.sendToDB()
 
-let subjectImporter = new MateriaImporter(entities[7])
-subjectImporter.sendToDB()
+    let subjectImporter = new MateriaImporter(entities[7])
+    await subjectImporter.sendToDB()
 
-let orientationImporter = new OrientacionImporter(entities[8])
-orientationImporter.sendToDB()
+    let orientationImporter = new OrientacionImporter(entities[8])
+    await orientationImporter.sendToDB()
+}
 
-alumnoGenerator(20000)
+//cargarDatos()
 
-
-
-// const converter : XMLtoJSONConverter = new XMLtoJSONConverter(route[0])
-// const result = await converter.convert()
-// let parseResult
-
-// if (route[0] === "./xml/localidades.xml") {
-//     parseResult = JSON.parse(result).VFPData['_exportar']
-// }
-// else{
-//     parseResult = JSON.parse(result).VFPData['_expxml']
-// }
-
-
-// for (let i = 0; i < parseResult.length; i++) {
-
-//     const record = convertStringNumbersExcept(parseResult[i])
-
-//     console.log(record)
-    
-//     await route[1].create(record)
-
-// }
-
-
+alumnoGenerator(200000)
