@@ -12,46 +12,33 @@ import { OrientacionImporter } from "./import/orientacionimport"
 import { alumnoGenerator } from "./import/alumnosImport"
 
 
-const entities : string[] = [
-    "./xml/universidad.xml",
-    "./xml/facultades.xml", 
-    "./xml/grados.xml", 
-    "./xml/localidades.xml", 
-    "./xml/paises.xml",
-    "./xml/especialidades.xml",
-    "./xml/planes.xml", 
-    "./xml/materias.xml", 
-    "./xml/orientaciones.xml",
-]
-
-
 
 const cargarDatos = async () => {
-    let universityImporter = new UniversidadImporter(entities[0])
+    let universityImporter = new UniversidadImporter("./xml/universidad.xml")
     await universityImporter.sendToDB()
 
-    let facultyImporter = new FacultadImporter(entities[1])
+    let facultyImporter = new FacultadImporter("./xml/facultades.xml")
     await facultyImporter.sendToDB()
 
-    let gradeImporter = new GradoImporter(entities[2])
+    let gradeImporter = new GradoImporter("./xml/grados.xml")
     await gradeImporter.sendToDB()
 
-    let locationsImporter = new LocalidadImporter(entities[3])
+    let locationsImporter = new LocalidadImporter("./xml/localidades.xml")
     await locationsImporter.sendToDB()
 
-    let countriesImporter = new PaisImporter(entities[4])
+    let countriesImporter = new PaisImporter("./xml/paises.xml")
     await countriesImporter.sendToDB()
 
-    let especialityImporter = new EspecialidadImporter(entities[5])
+    let especialityImporter = new EspecialidadImporter("./xml/especialidades.xml")
     await especialityImporter.sendToDB()
 
-    let planImporter = new PlanImporter(entities[6])
+    let planImporter = new PlanImporter("./xml/planes.xml")
     await planImporter.sendToDB()
 
-    let subjectImporter = new MateriaImporter(entities[7])
+    let subjectImporter = new MateriaImporter("./xml/materias.xml")
     await subjectImporter.sendToDB()
 
-    let orientationImporter = new OrientacionImporter(entities[8])
+    let orientationImporter = new OrientacionImporter("./xml/orientaciones.xml")
     await orientationImporter.sendToDB()
 }
 
