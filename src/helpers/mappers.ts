@@ -26,7 +26,7 @@ export class MapperInputPlanToPrsima {
 }
 
 
-export class MapperInputOrientacionToPrsima {
+export class MapperInputMateriaToPrsima {
 
     public static toPrismaCreate(inputMateria : InputMateria) : Prisma.MateriaCreateInput {
         return {
@@ -49,7 +49,7 @@ export class MapperInputOrientacionToPrsima {
 }
 
 
-export class MapperInputMateriaToPrsima {
+export class MapperInputOrientacionToPrsima {
 
     public static toPrismaCreate(inputOrientacion : InputOrientacion) : Prisma.OrientacionCreateInput {
         return {
