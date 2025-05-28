@@ -15,3 +15,35 @@ export type FacultadConRelaciones = Prisma.FacultadGetPayload<{
         alumnos: true
     }
 }>
+
+
+export type PlanConRelaciones = Prisma.PlanGetPayload<{
+    include: {
+        materias: true,
+        orientaciones: true,
+        especialidades: true
+    }
+}>
+
+
+export interface InputPlan {
+    especialidad: number,
+    plan: number,
+    nombre: string
+}
+
+export interface InputOrientacion {
+    orientacion : number,
+    especialidad : number,
+    plan : number,
+    nombre : string
+}
+
+
+export interface InputMateria {
+    materia : number,
+    nombre : string
+    ano : number
+    especialidad : number,
+    plan : number,
+}

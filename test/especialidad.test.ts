@@ -60,15 +60,16 @@ const mockEspecialidadConRelaciones : EspecialidadConRelaciones = {
     orientaciones: [
         {
             especialidad: 1,
+            orientacion: 1,
             plan: 1,
-            nombre: "Ingeniería"
+            nombre: "Ingeniería",
+
         }
     ],
     planes: [
         {
             plan: 1,
-            especialidad: 1,
-            nombre: "2007"
+            especialidad: 1
         }
     ]
 
