@@ -54,7 +54,7 @@ const mockEspecialidadConRelaciones : EspecialidadConRelaciones = {
             materia: 1,
             plan: 1,
             nombre: "Análisis Matemático I",
-            ano: 2018
+            ano: "2018"
         }
     ],
     orientaciones: [

@@ -9,17 +9,14 @@ export const alumnoGenerator = async (cantidad : number) => {
 
     const faculties = await FacultadService.get()
     const students = await AlumnoService.get()
-    const lastFacultyId = faculties[faculties.length - 1].facultad
-    let lastStudentId
 
-    if (students.length) {
-        lastStudentId = students[students.length -1].alumno
-    }
-    else {
-        lastStudentId = 0
-    }
+    let lastFacultyId : number
+    let lastStudentId : number
 
-    for (let i = lastStudentId + 1; i < cantidad; i++) {
+    students.length !== 0 ? lastStudentId = students[0].alumno : lastStudentId = 0
+    faculties.length !== 0 ? lastFacultyId = faculties[0].facultad : lastFacultyId = 0
+
+    for (let i = (lastStudentId + 1); i < (lastStudentId + cantidad); i++) {
     
         let alumno = randomStudent(i, randomNumber(1, lastFacultyId))
 

@@ -17,7 +17,7 @@ export class MateriaService {
         }
     }
 
-    public static async findById(id : number) : Promise<Materia | null> {
+    public static async findById(id : Prisma.MateriaWhereUniqueInput) : Promise<Materia | null> {
         try {
             const result = await repository.getById(id)
             return result
@@ -37,7 +37,7 @@ export class MateriaService {
         }
     }
 
-    public static async update(id : number, materia : Prisma.MateriaUpdateInput) : Promise<Materia> {
+    public static async update(id : Prisma.MateriaWhereUniqueInput, materia : Prisma.MateriaUpdateInput) : Promise<Materia> {
         try {
             const exists = await repository.getById(id)
 
@@ -54,7 +54,7 @@ export class MateriaService {
         }
     }
 
-    public static async delete(id : number) : Promise<Materia> {
+    public static async delete(id : Prisma.MateriaWhereUniqueInput) : Promise<Materia> {
         try {
             const exists = await repository.getById(id)
 

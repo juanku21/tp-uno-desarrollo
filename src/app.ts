@@ -9,7 +9,7 @@ import { EspecialidadImporter } from "./import/especialidadImport"
 import { PlanImporter } from "./import/planImport"
 import { MateriaImporter } from "./import/materiaImport"
 import { OrientacionImporter } from "./import/orientacionimport"
-import { alumnoGenerator } from "./import/alumnosImport"
+import { alumnoGenerator } from "./import/alumnoGenerator"
 
 
 
@@ -42,6 +42,7 @@ const cargarDatos = async () => {
     await orientationImporter.sendToDB()
 }
 
-//cargarDatos()
 
-alumnoGenerator(200000)
+cargarDatos()
+
+alumnoGenerator(2000)

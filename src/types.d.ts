@@ -43,7 +43,7 @@ export interface InputOrientacion {
 export interface InputMateria {
     materia : number,
     nombre : string
-    ano : number
+    ano : string
     especialidad : number,
     plan : number,
 }

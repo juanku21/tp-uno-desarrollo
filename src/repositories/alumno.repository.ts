@@ -10,6 +10,20 @@ export class AlumnoRepository extends BaseRepository
         super(prisma.alumno)
     }
 
+    public async get() : Promise<Alumno[]> {
+        try {
+            const result = await (this.model as any).findMany({
+                orderBy: {
+                    alumno: 'desc'
+                }
+            })
+            return result
+        } 
+        catch (error : any) {
+            throw new Error(`Error al leer la base de datos: ${error}`)
+        }
+    }
+
     public async getById(id : number) {
         try {
             const result = await prisma.alumno.findUnique({

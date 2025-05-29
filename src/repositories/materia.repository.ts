@@ -10,11 +10,11 @@ export class MateriaRepository extends BaseRepository
         super(prisma.materia)
     }
 
-    public async getById(id : number) : Promise<Materia | null> {
+    public async getById(id : Prisma.MateriaWhereUniqueInput) : Promise<Materia | null> {
         try {
             const result = await prisma.materia.findUnique({
                 where: {
-                    materia: id 
+                    materia_especialidad_plan: id.materia_especialidad_plan
                 }
             })
 
