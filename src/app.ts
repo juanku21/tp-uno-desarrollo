@@ -14,6 +14,7 @@ import { alumnoGenerator } from "./import/alumnoGenerator"
 
 
 const cargarDatos = async () => {
+    
     let universityImporter = new UniversidadImporter("./xml/universidad.xml")
     await universityImporter.sendToDB()
 
@@ -40,9 +41,10 @@ const cargarDatos = async () => {
 
     let orientationImporter = new OrientacionImporter("./xml/orientaciones.xml")
     await orientationImporter.sendToDB()
-}
 
+    await alumnoGenerator(20000)
+}
 
 cargarDatos()
 
-alumnoGenerator(2000)
+

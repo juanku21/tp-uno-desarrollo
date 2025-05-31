@@ -2,7 +2,7 @@
 services:
   database:
     container_name: postgres-sql-tp-uno
-    image: postgres
+    image: postgres:17.5-bullseye
     networks:
       - tp-uno-net
     ports:
