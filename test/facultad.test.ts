@@ -6,7 +6,6 @@ import { FacultadService } from "../src/services/facultad.service"
 import { prismaMock } from "../src/config/singleton"
 import { Prisma, PrismaClient } from "@prisma/client"
 import { Facultad } from "@prisma/client"
-import { FacultadConRelaciones } from "../src/types"
 
 
 class FacultadServiceTest extends BaseServiceTest 
@@ -46,21 +45,6 @@ const mockFacultad : Facultad = {
     nombre: "FRSR"
 }
 
-const mockFacultadConRelaciones : FacultadConRelaciones = {
-    facultad: 1,
-    nombre: "FRSR",
-    alumnos: [
-        {
-            alumno: 1,
-            nombre: "Macarena",
-            apellido: "Damiani",
-            facultad_id: 1
-        }
-    ]
-
-}
-
-
 const inputCreate : Prisma.FacultadCreateInput = {
     facultad: 1,
     nombre: "FRSR"
@@ -84,9 +68,9 @@ describe("Facultad service test", () => {
 
     })
 
-    test("Debería retornar una facultad con todas sus relaciones", async () => {
+    test("Debería retornar una facultad", async () => {
 
-        await facultadTest.findById(mockFacultadConRelaciones)
+        await facultadTest.findById(mockFacultad)
 
     })
 

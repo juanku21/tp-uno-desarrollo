@@ -1,5 +1,4 @@
 import { Prisma, Facultad } from "@prisma/client"
-import { FacultadConRelaciones } from "../types"
 import { BaseRepository } from "./base.repository"
 import prisma from "../config/client"
 
@@ -10,14 +9,11 @@ export class FacultadRepository extends BaseRepository
         super(prisma.facultad)
     }
 
-    public async getById(id : number) : Promise<FacultadConRelaciones | null> {
+    public async getById(id : number) : Promise<Facultad | null> {
         try {
             const result = await prisma.facultad.findUnique({
                 where: {
                     facultad: id 
-                },
-                include:{
-                    alumnos: true,
                 }
             })
 

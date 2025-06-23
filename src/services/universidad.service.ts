@@ -1,5 +1,8 @@
+
 import { UniversidadRepository } from "../repositories/universidad.repository"
 import { Universidad, Prisma } from "@prisma/client"
+import { InputUniversidad } from "types"
+import { MapperInputUniversidadToPrsima } from "../helpers/mappers"
 
 const repository = new UniversidadRepository()
 
@@ -25,9 +28,9 @@ export class UniversidadService {
         }
     }
 
-    public static async create(universidad : Prisma.UniversidadCreateInput) : Promise<Universidad> {
+    public static async create(universidad : InputUniversidad) : Promise<Universidad> {
         try {
-            const result = await repository.create(universidad)
+            const result = await repository.create(MapperInputUniversidadToPrsima.toPrismaCreate(universidad))
             return result
         } 
         catch (error : any) {

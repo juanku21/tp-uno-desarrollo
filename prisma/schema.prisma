@@ -24,7 +24,6 @@ model Universidad {
 model Facultad {
   facultad Int @id
   nombre String
-  alumnos Alumno[] 
 
   @@map("facultades")
 }
@@ -35,7 +34,7 @@ model Especialidad {
 
   materias Materia[]
   orientaciones Orientacion[]
-  planes Plan[]
+  planes PlanEspecialidad[]
 
   @@map("especialidades")
 }
@@ -57,27 +56,30 @@ model Localidad {
 }
 
 model Materia {
-  materia Int @id
+  materia Int
   especialidad Int
   plan Int
   nombre String
-  ano Int
+  ano String
 
   especialidades Especialidad @relation(fields: [especialidad], references: [especialidad])
   planes Plan @relation(fields: [plan], references: [plan])
+
+  @@id([materia, especialidad, plan])
 
   @@map("materias")
 }
 
 model Orientacion {
-  nombre String
   plan Int
   especialidad Int
+  orientacion Int
+  nombre String
 
   planes Plan @relation(fields: [plan], references: [plan])
   especialidades Especialidad @relation(fields: [especialidad], references: [especialidad])
 
-  @@id([plan, especialidad])
+  @@id([plan, especialidad, orientacion])
   @@map("orientaciones")
 }
 
@@ -88,25 +90,51 @@ model Pais {
   @@map("paises")
 }
 
-model Plan {
-  plan Int @id 
+model PlanEspecialidad {
+  plan Int
   especialidad Int
+
+  planes Plan @relation(fields: [plan], references: [plan])
+  especialidades Especialidad @relation(fields: [especialidad], references: [especialidad])
+
+  @@id([plan, especialidad])
+
+  @@map("planes-especialidades")
+}
+
+
+model Plan {
+  plan Int @id
   nombre String
 
-  orientaciones Orientacion[]
+  especialidades PlanEspecialidad[]
   materias Materia[]
-  especialidades Especialidad @relation(fields: [especialidad], references: [especialidad])
+  orientaciones Orientacion[]
 
   @@map("planes")
 }
 
 model Alumno {
-  alumno Int @id
-  nombre String
+  alumno Int @id @default(autoincrement())
   apellido String
-  facultad_id Int
-
-  facultad Facultad @relation(fields: [facultad_id], references: [facultad])
+  nombre String
+  numero_documento Int @unique
+  tipo_documento TipoDocumento
+  fecha_nacimiento DateTime
+  sexo Sexo
+  numero_legajo Int @unique
+  fecha_ingreso DateTime
 
   @@map("alumnos")
+}
+
+enum TipoDocumento {
+  LibretaCivica
+  LibretaEnrolamiento
+  Pasaporte
+}
+
+enum Sexo {
+  F
+  M
 }

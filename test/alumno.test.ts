@@ -34,29 +34,38 @@ const alumnoTest = new AlumnoServiceTest()
 const mockAlumnoArray : Alumno[] = [
     {
         alumno: 1,
-        nombre: "Macarena",
         apellido: "Damiani",
-        facultad_id: 5
+        nombre: "Macarena",
+        numero_documento: 6983452,
+        tipo_documento: "LibretaCivica",
+        fecha_nacimiento: expect.any(Date),
+        sexo: "F",
+        numero_legajo: 10000,
+        fecha_ingreso: expect.any(Date)
     }
 ]
 
 const mockAlumno : Alumno = {
     alumno: 1,
-    nombre: "Macarena",
     apellido: "Damiani",
-    facultad_id: 5
+    nombre: "Macarena",
+    numero_documento: 6983452,
+    tipo_documento: "LibretaCivica",
+    fecha_nacimiento: expect.any(Date),
+    sexo: "F",
+    numero_legajo: 10000,
+    fecha_ingreso: expect.any(Date)
 }
 
-
 const inputCreate: Prisma.AlumnoCreateInput = {
-    alumno: 1,  
-    nombre: "Macarena",
     apellido: "Damiani",
-    facultad: {
-        connect: {
-            facultad: 5  
-        }
-    }
+    nombre: "Macarena",
+    numero_documento: 6983452,
+    tipo_documento: "LibretaCivica",
+    fecha_nacimiento: expect.any(Date),
+    sexo: "F",
+    numero_legajo: 10000,
+    fecha_ingreso: expect.any(Date)
 }
 
 const inputUpdate : Prisma.AlumnoUpdateInput = {

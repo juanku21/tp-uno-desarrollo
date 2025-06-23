@@ -8,3 +8,19 @@ $ DIAZ ROSSI JUAN CRUZ
 $ MATURANO PABLO
 $ MERCADO MARTIN
 $ LIMERES TOMÁS
+
+
+Comandos para ejecutar el proyecto
+
+1. Instalar node (si ya lo tiene instalado, ignorar este paso).
+2. Instalar docker (si ya lo tiene instalado, ignorar este paso).
+3. Ejecutar el comando "npm i" para instalar localmente las dependencias
+4. Ejecutar el comando "npm i tsx -g" para instalar globalmente en transpilador de typescript
+5. Crear un archivo ".env" basado en la forma indicada en ".env.example"
+6. Crear carpeta "data-postgres" dentro de la carpeta database (crear la misma) ya que se utilizará como volumen 
+7. Crear la red docker "tp-uno-net" para ubicar el contenedor postgres en la misma
+8. Ejecutar el comando "docker-compose up -d" para levantar la BD local
+9. Ejecutar el comando "npx prisma migrate deploy" para convetir los modelos en tablas de la BD
+10. Ejecutar el comando "npx prisma studio" (puede comprobar que la BD está vacía)
+11. Ejecutar el comando "tsx ./src/app.ts" para importar los datos
+12. Ejecutar el comando "npx prisma studio" (puede comprobar que la información se cargo en la BD)
