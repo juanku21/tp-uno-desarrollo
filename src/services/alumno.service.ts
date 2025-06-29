@@ -36,6 +36,16 @@ export class AlumnoService {
         }
     }
 
+    public static async createMany(alumnos : Prisma.AlumnoCreateInput[]) : Promise<object> {
+        try {
+            const result = await repository.createMany(alumnos)
+            return result
+        } 
+        catch (error : any) {
+            throw new Error(`No fue posible crear un nuevo alumno ${error}`)
+        }
+    }
+
     public static async update(id : number, alumno : Prisma.AlumnoUpdateInput) : Promise<Alumno> {
         try {
             const exists = await repository.getById(id)
@@ -69,5 +79,6 @@ export class AlumnoService {
             throw new Error(`No fue posible eliminar el alumno ${error}`)
         }
     }
+
 
 }

@@ -118,11 +118,11 @@ model Alumno {
   alumno Int @id @default(autoincrement())
   apellido String
   nombre String
-  numero_documento Int @unique
+  numero_documento String @unique
   tipo_documento TipoDocumento
   fecha_nacimiento DateTime
   sexo Sexo
-  numero_legajo Int @unique
+  numero_legajo String @unique
   fecha_ingreso DateTime
 
   @@map("alumnos")

@@ -10,7 +10,6 @@ export type EspecialidadConRelaciones = Prisma.EspecialidadGetPayload<{
 }>
 
 
-
 export type PlanConRelaciones = Prisma.PlanGetPayload<{
     include: {
         materias: true,

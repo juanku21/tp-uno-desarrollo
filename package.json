@@ -7,8 +7,7 @@
     "test": "npx jest",
     "build": "tsc",
     "start": "node build/index.js",
-    "clean": "rmdir /s /q build",
-    "cleanDB": "tsx ./src/cleanTableAlumnos.ts"
+    "clean": "rmdir /s /q build"
   },
   "keywords": [],
   "author": "",

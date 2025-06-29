@@ -39,4 +39,20 @@ export class AlumnoRepository extends BaseRepository
         }
     }
 
+
+    public async createMany(data : Prisma.AlumnoCreateInput[]) : Promise<object> {
+        try {
+            const result = await prisma.alumno.createMany({
+                data: data,
+                skipDuplicates: true
+            })
+
+            return result
+        } 
+        catch (error : any) {
+            throw new Error(`Error al escribir la base de datos: ${error}`)
+        }
+ 
+    }
+
 }

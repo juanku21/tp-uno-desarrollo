@@ -3,6 +3,7 @@
 import { InputPlan, InputOrientacion, InputMateria, InputUniversidad } from "types"
 import { Prisma } from "@prisma/client"
 
+
 export class MapperInputPlanToPrsima {
 
     public static toPrismaCreate(inputPlan : InputPlan) : Prisma.PlanEspecialidadCreateInput {
@@ -86,3 +87,4 @@ export class MapperInputUniversidadToPrsima {
     }
 
 }
+

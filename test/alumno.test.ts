@@ -2,7 +2,7 @@
 import { BaseServiceTest } from "./utils/base-test"
 import { AlumnoService } from "../src/services/alumno.service"
 import { prismaMock } from "../src/config/singleton"
-import { Prisma, PrismaClient } from "@prisma/client"
+import { Prisma } from "@prisma/client"
 import { Alumno } from "@prisma/client"
 
 
@@ -24,6 +24,17 @@ class AlumnoServiceTest extends BaseServiceTest
 
     }
 
+    public async createMany(inputAlumnoMany : Prisma.AlumnoCreateInput[]){
+
+        this.mock.createMany.mockResolvedValue({count: 1})
+
+        const result = await (this.service as any).createMany(inputAlumnoMany)
+
+        expect(result).toEqual({count: 1})
+        expect(this.mock.createMany).toHaveBeenCalled()
+
+    }
+
 }
 
 const alumnoTest = new AlumnoServiceTest()
@@ -36,11 +47,11 @@ const mockAlumnoArray : Alumno[] = [
         alumno: 1,
         apellido: "Damiani",
         nombre: "Macarena",
-        numero_documento: 6983452,
+        numero_documento: "6983452",
         tipo_documento: "LibretaCivica",
         fecha_nacimiento: expect.any(Date),
         sexo: "F",
-        numero_legajo: 10000,
+        numero_legajo: "10000",
         fecha_ingreso: expect.any(Date)
     }
 ]
@@ -49,22 +60,22 @@ const mockAlumno : Alumno = {
     alumno: 1,
     apellido: "Damiani",
     nombre: "Macarena",
-    numero_documento: 6983452,
+    numero_documento: "6983452",
     tipo_documento: "LibretaCivica",
     fecha_nacimiento: expect.any(Date),
     sexo: "F",
-    numero_legajo: 10000,
+    numero_legajo: "10000",
     fecha_ingreso: expect.any(Date)
 }
 
 const inputCreate: Prisma.AlumnoCreateInput = {
     apellido: "Damiani",
     nombre: "Macarena",
-    numero_documento: 6983452,
+    numero_documento: "6983452",
     tipo_documento: "LibretaCivica",
     fecha_nacimiento: expect.any(Date),
     sexo: "F",
-    numero_legajo: 10000,
+    numero_legajo: "10000",
     fecha_ingreso: expect.any(Date)
 }
 
@@ -72,6 +83,18 @@ const inputUpdate : Prisma.AlumnoUpdateInput = {
     nombre: 'Macarinha'
 }
 
+const inputAlumnoMany : Prisma.AlumnoCreateInput[] = [
+    {
+        apellido: "Damiani",
+        nombre: "Macarena",
+        numero_documento: "6983452",
+        tipo_documento: "LibretaCivica",
+        fecha_nacimiento: expect.any(Date),
+        sexo: "F",
+        numero_legajo: "10000",
+        fecha_ingreso: expect.any(Date)
+    }
+]
 
 
 
@@ -111,5 +134,11 @@ describe("Alumno service test", () => {
 
     })
 
+
+    test("Debería crear varios alumnos", async () => {
+
+        await alumnoTest.createMany(inputAlumnoMany)
+
+    })
 
 })
